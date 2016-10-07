@@ -14,3 +14,5 @@ function pickRandomword(words)
 
 console.log(wordToGuess);
 /*Comment*/
+
+/* Comment added PJ 11:56 */
