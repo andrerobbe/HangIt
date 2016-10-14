@@ -31,7 +31,7 @@ var placeHolderHTML =document.getElementById("placeholder");
 var chances 		=6;
 var buttonpressed 	="";
 var bttns 			=document.getElementsByTagName("button");
-var IMG_PATH        ="../img/";
+var IMG_PATH        ="img/";
 var IMG_EXT         =".png";
 
 for (var i = 0; i < bttns.length; i++) 
