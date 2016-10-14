@@ -31,6 +31,8 @@ var placeHolderHTML =document.getElementById("placeholder");
 var chances 		=6;
 var buttonpressed 	="";
 var bttns 			=document.getElementsByTagName("button");
+var IMG_PATH        ="../img/";
+var IMG_EXT         =".png";
 
 for (var i = 0; i < bttns.length; i++) 
 {
@@ -43,6 +45,7 @@ for(var i  = 0;i<wordToGuess.length; i++)
 placeHolderHTML.innerHTML=placeholder.join(" ");
 
 chance.subscribe(changeImage)
+chance.subscribe(gameOver)
 button.subscribe(buttonWasPressed)
 
 function pickRandomword(words)
@@ -87,6 +90,8 @@ function changePlaceholderToLetter(string)
 function changeImage()
 {
     var chanceValue=chance.publish();
+    var img=document.getElementsByTagName("img")[0];
+    img.src=IMG_PATH+chanceValue+IMG_EXT;
     console.log(chanceValue);
 }
 function buttonWasPressed()
@@ -100,4 +105,20 @@ function disableBttn(buttontoDisable)
 {
     document.getElementById(buttontoDisable).disabled=true;
 }
-
+function gameOver()
+{
+    var chanceValue=chance.publish();
+    if(chanceValue<=0)
+        {
+          for (var i = 0; i < bttns.length; i++) 
+            {
+	         bttns[i].disabled=true;
+            }
+          alert("Game Over!");  
+        }
+    else
+        {
+            return;
+        }
+    
+}
