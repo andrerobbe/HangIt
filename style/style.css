@@ -1,0 +1,78 @@
+/* === FONTS === */
+@font-face {
+        font-family: 'KdGExpert';
+        src: 
+            url(../fonts/KdGExpert-Regular.eot);
+        src: 
+            url(../fonts/KdGExpert-Regular.eot) format('embedded-opentype'), 
+            url(../fonts/KdGExpert-Regular.woff) format('woff'), 
+            url(../fonts/KdGExpert-Regular.ttf) format('truetype'), 
+            url(../fonts/KdGExpert-Regular.svg) format('svg');
+        font-style: normal;
+        font-weight: normal;
+}
+
+/* === BODY === */
+body {
+    font-family: 'KdGExpert';
+}
+
+/* === CONTENT === */
+.content {
+    width: 80%;
+    margin: 0 auto; 
+    padding-top: 5em;
+}
+
+.hangmanIMG {
+    width: 40%;
+    height: 20em;
+    margin: 3em auto 4em auto;
+    background-color: lightgrey;
+}
+
+#main_title, #placeholder {
+    text-align: center;
+}
+
+#main_title {
+    margin: 0;
+    font-size: 5em;
+}
+
+#placeholder {
+    text-align: center;
+    font-size: 3em;
+}
+
+/* === BUTTONS === */
+.buttons {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+button {
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #000;
+    text-align: center;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+button:disabled {
+    color: #bababa;
+    background-color: #d8d8d8;
+    border: 2px solid #d8d8d8;
+}
+
+
+
