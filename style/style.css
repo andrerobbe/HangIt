@@ -21,13 +21,12 @@ body {
 .content {
     width: 80%;
     margin: 0 auto; 
-    padding-top: 5em;
+    padding-top: 2em;
 }
 
 .hangmanIMG {
     width: 40%;
     margin: 3em auto 4em auto;
-    background-color: lightgrey;
 }
 
 .hangmanIMG img {
