@@ -32,7 +32,6 @@ body {
     margin: 0 auto; 
     padding-top: 2em;
 }
-
 .hangmanIMG {
     width: 40%;
     margin: 3em auto 4em auto;
@@ -53,14 +52,13 @@ body {
     font-size: 5em;
 }
 
-#placeholder {
+h2{
     text-align: center;
     font-size: 3em;
 }
-
-/* === TIMER === */
-.hangmanIMG img, #timer {
-    float: left;
+#game_status {
+    height: 1em;
+    font-size: 2em;
 }
 
 /* === BUTTONS === */
@@ -69,7 +67,7 @@ body {
     margin-bottom: 2em;
 }
 
-button {
+.buttons button {
     width: 3em;
     height: 3em;
     margin-right: 1em;
@@ -80,21 +78,21 @@ button {
     display: inline-block;
 }
 
-button:hover {
+.buttons button:hover {
     background-color: #000;
     color: #fff;
     border: 2px solid #fff;
 }
 
-button:disabled {
+.buttons button:disabled {
     color: #bababa;
     background-color: #d8d8d8;
     border: 2px solid #d8d8d8;
 }
 
-/* === RESTART BUTTON === */
-a {
-    margin: 4em auto 5em auto;
+/* === LEFT BUTTON === */
+.left_buttons button {
+    margin: 0.75em auto;
     display: block;
     width: 10em;
     height: 3em;
@@ -104,12 +102,24 @@ a {
     text-decoration: none;
     color: #000;
     font-size: 1em;
+    background-color: #fff;
 }
-
-a:hover {
+.left_buttons{
+    float: left;
+    margin-left: 15%;
+}
+#timer {
+    margin-left: 10%;
+    margin-bottom: 0;
+    font-size: 3em;
+}
+.left_buttons > button:first-child {
+    margin-top: 1em;
+}
+.left_buttons button:hover {
     background-color: #000;
     color: #fff;
 }
-
-
-
+#btn_div{
+    width: 20%;
+}
