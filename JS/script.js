@@ -23,6 +23,7 @@ return Myself.methods
 //DECLARATION OF VARIABLES
 var button          = new Observable();
 var chance          = new Observable();
+var time            = new Observable();
 var words 			= ["appel","hond","lepel","kat","auto","fiets","computer","badschuim","konijn","bus","school",
 					   "webdesign","hoofdje","zwengel","chinees","golfclub","polyethyleen","meubel","zaak"];		   
 var wordToGuess 	= pickRandomword(words);
@@ -31,9 +32,12 @@ var placeHolderHTML =document.getElementById("placeholder");
 var chances 		=6;
 var buttonpressed 	="";
 var bttns 			=document.getElementsByTagName("button");
-var IMG_PATH        ="../img/";
+var IMG_PATH        ="img/";
 var IMG_EXT         =".png";
+var TOTAL_SECONDS   =30;
+var TOTAL_MINUTES   =0;
 
+Clock(TOTAL_MINUTES, TOTAL_SECONDS);
 for (var i = 0; i < bttns.length; i++) 
 {
 	bttns[i].addEventListener("click",onBttnClick);
@@ -47,6 +51,7 @@ placeHolderHTML.innerHTML=placeholder.join(" ");
 chance.subscribe(changeImage)
 chance.subscribe(gameOver)
 button.subscribe(buttonWasPressed)
+time.subscribe(CheckIfTimeIsup)
 
 function pickRandomword(words)
 {
@@ -121,4 +126,55 @@ function gameOver()
             return;
         }
     
+}
+
+function Clock (min, sec) {
+    var seconds = sec;
+    var minutes = min;
+    var secInHTML   = document.getElementById("seconds");
+    var minInHTML   = document.getElementById("minutes");
+    
+    var interval    = setInterval(DecreaseTime, 1000);
+    
+    function DecreaseTime () {
+        var totalTime   = "";
+        seconds--;
+        
+        if (seconds < 0) {
+            minutes--;
+            seconds = 59;
+        }
+        
+        if (minutes == 0 && seconds == 0) {
+            minInHTML.innerHTML = "0" + 0;
+            secInHTML.innerHTML = "0" + 0;
+            clearInterval(interval);
+        }
+        
+        minInHTML.innerHTML = minutes;
+        secInHTML.innerHTML = seconds;
+        
+        if (seconds < 10) {
+            secInHTML.innerHTML = "0" + seconds;
+        }
+        
+        if (minutes < 10) {
+            minInHTML.innerHTML = "0" + minutes;
+        }
+        
+        totalTime = minutes + seconds;
+        time.publish(totalTime);
+    }
+}
+function CheckIfTimeIsup()
+{
+    var totalTime=time.publish();
+    if(totalTime==0)
+    {
+        for (var i = 0; i < bttns.length; i++) 
+            {
+             bttns[i].disabled=true;
+            }
+        console.log("Time is up");
+    }
 }
