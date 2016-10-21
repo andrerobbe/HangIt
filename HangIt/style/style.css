@@ -1,0 +1,125 @@
+/* === FONTS === */
+@font-face {
+        font-family: 'KdGExpert';
+        src: 
+            url(../fonts/KdGExpert-Regular.eot);
+        src: 
+            url(../fonts/KdGExpert-Regular.eot) format('embedded-opentype'), 
+            url(../fonts/KdGExpert-Regular.woff) format('woff'), 
+            url(../fonts/KdGExpert-Regular.ttf) format('truetype'), 
+            url(../fonts/KdGExpert-Regular.svg) format('svg');
+        font-style: normal;
+        font-weight: normal;
+}
+
+/* === CLEARFIX === */
+.cfx:after { 
+   content: ""; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+/* === BODY === */
+body {
+    font-family: 'KdGExpert';
+}
+
+/* === CONTENT === */
+.content {
+    width: 80%;
+    margin: 0 auto; 
+    padding-top: 2em;
+}
+.hangmanIMG {
+    width: 40%;
+    margin: 3em auto 4em auto;
+}
+
+.hangmanIMG img {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+#main_title, #placeholder {
+    text-align: center;
+}
+
+#main_title {
+    margin: 0;
+    font-size: 5em;
+}
+
+h2{
+    text-align: center;
+    font-size: 3em;
+}
+#game_status {
+    height: 1em;
+    font-size: 2em;
+}
+
+/* === BUTTONS === */
+.buttons {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.buttons button {
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #000;
+    text-align: center;
+    display: inline-block;
+}
+
+.buttons button:hover {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.buttons button:disabled {
+    color: #bababa;
+    background-color: #d8d8d8;
+    border: 2px solid #d8d8d8;
+}
+
+/* === LEFT BUTTON === */
+.left_buttons button {
+    margin: 0.75em auto;
+    display: block;
+    width: 10em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    border: 2px solid #000;
+    text-decoration: none;
+    color: #000;
+    font-size: 1em;
+    background-color: #fff;
+}
+.left_buttons{
+    float: left;
+    margin-left: 15%;
+}
+#timer {
+    margin-left: 10%;
+    margin-bottom: 0;
+    font-size: 3em;
+}
+.left_buttons > button:first-child {
+    margin-top: 1em;
+}
+.left_buttons button:hover {
+    background-color: #000;
+    color: #fff;
+}
+#btn_div{
+    width: 20%;
+}
