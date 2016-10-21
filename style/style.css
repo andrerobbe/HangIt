@@ -12,6 +12,15 @@
         font-weight: normal;
 }
 
+/* === CLEARFIX === */
+.cfx:after { 
+   content: ""; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
 /* === BODY === */
 body {
     font-family: 'KdGExpert';
@@ -47,6 +56,11 @@ body {
 #placeholder {
     text-align: center;
     font-size: 3em;
+}
+
+/* === TIMER === */
+.hangmanIMG img, #timer {
+    float: left;
 }
 
 /* === BUTTONS === */

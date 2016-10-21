@@ -122,3 +122,45 @@ function gameOver()
         }
     
 }
+
+function Clock (min, sec) {
+    var seconds = sec;
+    var minutes = min;
+    var secInHTML   = document.getElementById("seconds");
+    var minInHTML   = document.getElementById("minutes");
+    
+    var interval    = setInterval(DecreaseTime, 1000);
+    
+    function DecreaseTime () {
+        var totalTime   = "";
+        seconds--;
+        
+        if (seconds < 0) {
+            minutes--;
+            seconds = 59;
+        }
+        
+        if (minutes == 0 && seconds == 0) {
+            minInHTML.innerHTML = "0" + 0;
+            secInHTML.innerHTML = "0" + 0;
+            clearInterval(interval);
+            GameOver();
+        }
+        
+        minInHTML.innerHTML = minutes;
+        secInHTML.innerHTML = seconds;
+        
+        if (seconds < 10) {
+            secInHTML.innerHTML = "0" + seconds;
+        }
+        
+        if (minutes < 10) {
+            minInHTML.innerHTML = "0" + minutes;
+        }
+        
+        totalTime = minutes + seconds;
+        console.log(totalTime);
+    }
+}
+
+Clock(0, 15);
