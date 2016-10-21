@@ -24,20 +24,25 @@ return Myself.methods
 var button          = new Observable();
 var chance          = new Observable();
 var time            = new Observable();
+var completed       = new Observable();
 var words 			= ["appel","hond","lepel","kat","auto","fiets","computer","badschuim","konijn","bus","school",
 					   "webdesign","hoofdje","zwengel","chinees","golfclub","polyethyleen","meubel","zaak"];		   
 var wordToGuess 	= pickRandomword(words);
-var placeholder     =[];
-var placeHolderHTML =document.getElementById("placeholder");
-var chances 		=6;
-var buttonpressed 	="";
-var bttns 			=document.getElementsByTagName("button");
-var IMG_PATH        ="img/";
-var IMG_EXT         =".png";
-var TOTAL_SECONDS   =30;
-var TOTAL_MINUTES   =0;
+var placeholder     = [];
+var gameStatus      = document.getElementById("game_status");
+var placeHolderHTML = document.getElementById("placeholder");
+var chances 		= 6;
+var buttonpressed 	= "";
+var bttns 			= document.querySelectorAll(".buttons button");
+var IMG_PATH        = "img/";
+var IMG_EXT         = ".png";
+var TOTAL_SECONDS   = 30;
+var TOTAL_MINUTES   = 0;
+var game_is_running = true;
 
-Clock(TOTAL_MINUTES, TOTAL_SECONDS);
+
+Clock(TOTAL_MINUTES,TOTAL_SECONDS);
+
 for (var i = 0; i < bttns.length; i++) 
 {
 	bttns[i].addEventListener("click",onBttnClick);
@@ -48,16 +53,21 @@ for(var i  = 0;i<wordToGuess.length; i++)
     }
 placeHolderHTML.innerHTML=placeholder.join(" ");
 
-chance.subscribe(changeImage)
-chance.subscribe(gameOver)
-button.subscribe(buttonWasPressed)
-time.subscribe(CheckIfTimeIsup)
+chance.subscribe(changeImage);
+chance.subscribe(gameOver);
+button.subscribe(buttonWasPressed);
+time.subscribe(CheckIfTimeIsup);
+completed.subscribe(gameComplete);
 
-function pickRandomword(words)
+function pickRandomword()
 {
 	ranndomNumber = Math.floor( Math.random() * 18  );
-	wordToGuess = words[ranndomNumber].toUpperCase();
-	return wordToGuess;
+	wordToGuess = words[ranndomNumber];
+    var index = words.indexOf(wordToGuess);
+    if (index != -1) {
+        words.splice(index, 1);
+    }
+	return wordToGuess.toUpperCase();
 }
 function OneChanceless()
 {
@@ -91,20 +101,19 @@ function changePlaceholderToLetter(string)
                     placeHolderHTML.innerHTML=placeholder.join(" ");
                 }
         }
+    completed.publish(placeholder);
 }
 function changeImage()
 {
     var chanceValue=chance.publish();
     var img=document.getElementsByTagName("img")[0];
     img.src=IMG_PATH+chanceValue+IMG_EXT;
-    console.log(chanceValue);
 }
 function buttonWasPressed()
 {
     buttonpressed=button.publish();
     checkIfInArray(buttonpressed);
     disableBttn(buttonpressed);
-    
 }
 function disableBttn(buttontoDisable)
 {
@@ -119,13 +128,26 @@ function gameOver()
             {
 	         bttns[i].disabled=true;
             }
-          alert("Game Over!");  
+            game_status.innerHTML = "Game over! Press the restart button to play again.";
+            game_is_running = false;
         }
-    else
+        else
         {
             return;
         }
     
+}
+
+function gameComplete(){
+    var word = completed.publish();
+    if( placeholder.indexOf("_") == -1 ){
+        game_status.innerHTML = "You guessed the word! 1 credit has been added.";
+        game_is_running = false;
+        // if (event.onclick (nextbutton, click) ){
+        //  pickrandomwords();
+        //  game_status.innterHTML = "";
+        //}
+    }
 }
 
 function Clock (min, sec) {
@@ -138,7 +160,9 @@ function Clock (min, sec) {
     
     function DecreaseTime () {
         var totalTime   = "";
-        seconds--;
+        if (game_is_running){
+            seconds--;
+        }
         
         if (seconds < 0) {
             minutes--;
@@ -175,6 +199,7 @@ function CheckIfTimeIsup()
             {
              bttns[i].disabled=true;
             }
-        console.log("Time is up");
+        game_status.innerHTML = "Time ran out! Try again";
     }
 }
+

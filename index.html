@@ -9,18 +9,21 @@
     <div class="content">
         <h1 id="main_title">HanGit!</h1>
         
-        <div class="hangmanIMG cfx">
-            <img src="img/6.png" alt="Picture of the hangman">
-            <p id="timer"><span id="minutes">0</span>:<span id="seconds">0</span></p>
-        </div>
+        <div class="cfx">
+            <div class="left_buttons">
+                <button>Next word</button>
+                <button>Credits</button>
+                <button>Nog een button</button>
+                <button>Restart Game</button>
+                <p id="timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>
+            </div>
+            <div class="hangmanIMG">
+                <img src="img/6.png" alt="Picture of the hangman">
+            </div>
+        </div> 
         
-        
-        
-        
-        
-        <h2 id="placeholder"></h2><br>
-        
-        
+        <h2 id="placeholder"></h2>
+        <h2 id="game_status"></h2>
         <div class="buttons">
             <button id="A">A</button>
             <button id="B">B</button>
@@ -50,10 +53,6 @@
             <button id="Z">Z</button>             
         </div>
     </div>
-    
-    <a href="">Restart Game</a>
-
 	<script src="JS/script.js"></script>
-	<script src="JS/script_1.js"></script>
 </body>
 </html>
