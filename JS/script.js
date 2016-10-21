@@ -23,6 +23,7 @@ return Myself.methods
 //DECLARATION OF VARIABLES
 var button          = new Observable();
 var chance          = new Observable();
+var time            = new Observable();
 var words 			= ["appel","hond","lepel","kat","auto","fiets","computer","badschuim","konijn","bus","school",
 					   "webdesign","hoofdje","zwengel","chinees","golfclub","polyethyleen","meubel","zaak"];		   
 var wordToGuess 	= pickRandomword(words);
@@ -33,7 +34,10 @@ var buttonpressed 	="";
 var bttns 			=document.getElementsByTagName("button");
 var IMG_PATH        ="img/";
 var IMG_EXT         =".png";
+var TOTAL_SECONDS   =30;
+var TOTAL_MINUTES   =0;
 
+Clock(TOTAL_MINUTES, TOTAL_SECONDS);
 for (var i = 0; i < bttns.length; i++) 
 {
 	bttns[i].addEventListener("click",onBttnClick);
@@ -47,6 +51,7 @@ placeHolderHTML.innerHTML=placeholder.join(" ");
 chance.subscribe(changeImage)
 chance.subscribe(gameOver)
 button.subscribe(buttonWasPressed)
+time.subscribe(CheckIfTimeIsup)
 
 function pickRandomword(words)
 {
@@ -144,7 +149,6 @@ function Clock (min, sec) {
             minInHTML.innerHTML = "0" + 0;
             secInHTML.innerHTML = "0" + 0;
             clearInterval(interval);
-            GameOver();
         }
         
         minInHTML.innerHTML = minutes;
@@ -159,8 +163,18 @@ function Clock (min, sec) {
         }
         
         totalTime = minutes + seconds;
-        console.log(totalTime);
+        time.publish(totalTime);
     }
 }
-
-Clock(0, 15);
+function CheckIfTimeIsup()
+{
+    var totalTime=time.publish();
+    if(totalTime==0)
+    {
+        for (var i = 0; i < bttns.length; i++) 
+            {
+             bttns[i].disabled=true;
+            }
+        console.log("Time is up");
+    }
+}
