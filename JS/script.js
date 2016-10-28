@@ -25,9 +25,12 @@ var button          = new Observable();
 var chance          = new Observable();
 var time            = new Observable();
 var completed       = new Observable();
-var words 			= ["appel","hond","lepel","kat","auto","fiets","computer","badschuim","konijn","bus","school",
-					   "webdesign","hoofdje","zwengel","chinees","golfclub","polyethyleen","meubel","zaak"];		   
-var wordToGuess 	= pickRandomword(words);
+var sterren         = new Observable();
+var stars_LI        =document.getElementsByClassName("star_image");
+var words 			= //["appel","hond","lepel","kat","auto","fiets","computer","badschuim","konijn","bus","school",
+                       //"webdesign","hoofdje","zwengel","chinees","golfclub","polyethyleen","meubel","zaak"];
+                       ["LOL","TEST","LUL","FK","OOOOO"];		   
+var wordToGuess 	= pickRandomword();
 var placeholder     = [];
 var gameStatus      = document.getElementById("game_status");
 var placeHolderHTML = document.getElementById("placeholder");
@@ -36,13 +39,18 @@ var buttonpressed 	= "";
 var bttns 			= document.querySelectorAll(".buttons button");
 var IMG_PATH        = "img/";
 var IMG_EXT         = ".png";
-var TOTAL_SECONDS   = 30;
-var TOTAL_MINUTES   = 0;
+var TOTAL_SECONDS   = 1;
+var TOTAL_MINUTES   = 3;
 var game_is_running = true;
-
+var stars           = 0;
+var nextwordbttn    = document.getElementById("nextword");
+var restartgamebttn = document.getElementById("restartgame");
+nextwordbttn.disabled=true;
+restartgamebttn.disabled=true;
+nextwordbttn.addEventListener("click",NextWord);
+restartgamebttn.addEventListener("click",GameRestart);
 
 Clock(TOTAL_MINUTES,TOTAL_SECONDS);
-
 for (var i = 0; i < bttns.length; i++) 
 {
 	bttns[i].addEventListener("click",onBttnClick);
@@ -58,16 +66,64 @@ chance.subscribe(gameOver);
 button.subscribe(buttonWasPressed);
 time.subscribe(CheckIfTimeIsup);
 completed.subscribe(gameComplete);
-
+sterren.subscribe(StarImages);
+sterren.subscribe(EntireGameComplete);
+function StarImages()
+{
+    var ster=sterren.publish();
+    for (var i = 0; i < stars_LI.length; i++) {
+        if(i<ster)
+        {
+           stars_LI[i].src=IMG_PATH+"star_active"+IMG_EXT; 
+        }
+    }
+}
+function EntireGameComplete()
+{
+    if (sterren.publish()>=5) 
+    {
+    game_status.innerHTML = "Game Complete Congrats!";
+    nextwordbttn.disabled=true;
+    restartgamebttn.disabled=false;
+    for (var i = 0; i < bttns.length; i++) 
+        {
+            bttns[i].disabled=true;
+        }
+    }
+}
+function GameRestart()
+{
+window.location="index.html";
+}
+function NextWord()
+{
+    if (stars<6) {
+        var wordToGuess= pickRandomword();
+    chances=6;
+    chance.publish(chances);
+    placeholder=[];
+    for (var i = 0; i < bttns.length; i++) 
+            {
+             bttns[i].disabled=false;
+            }
+    for(var i  = 0;i<wordToGuess.length; i++)
+    {
+        placeholder.push("_");
+    }
+    placeHolderHTML.innerHTML=placeholder.join(" ");
+    game_is_running=true;
+    nextwordbttn.disabled=true;
+    game_status.innerHTML=" ";
+    }
+}
 function pickRandomword()
 {
-	ranndomNumber = Math.floor( Math.random() * 18  );
-	wordToGuess = words[ranndomNumber];
-    var index = words.indexOf(wordToGuess);
-    if (index != -1) {
-        words.splice(index, 1);
+	ranndomNumber = Math.floor( Math.random() * words.length );
+	wordToGuess = words[ranndomNumber].toUpperCase();
+    if (ranndomNumber != -1) {
+        words.splice(ranndomNumber, 1);
     }
-	return wordToGuess.toUpperCase();
+	return wordToGuess;
 }
 function OneChanceless()
 {
@@ -130,6 +186,7 @@ function gameOver()
             }
             game_status.innerHTML = "Game over! Press the restart button to play again.";
             game_is_running = false;
+            restartgamebttn.disabled=false;
         }
         else
         {
@@ -137,16 +194,14 @@ function gameOver()
         }
     
 }
-
 function gameComplete(){
     var word = completed.publish();
     if( placeholder.indexOf("_") == -1 ){
-        game_status.innerHTML = "You guessed the word! 1 credit has been added.";
+        game_status.innerHTML = "You guessed the word! 1 star was added. Press Nextword to Continue";
         game_is_running = false;
-        // if (event.onclick (nextbutton, click) ){
-        //  pickrandomwords();
-        //  game_status.innterHTML = "";
-        //}
+        nextwordbttn.disabled=false;
+        stars++;
+        sterren.publish(stars);
     }
 }
 
@@ -200,6 +255,7 @@ function CheckIfTimeIsup()
              bttns[i].disabled=true;
             }
         game_status.innerHTML = "Time ran out! Try again";
+        restartgamebttn.disabled=false;
     }
 }
 
