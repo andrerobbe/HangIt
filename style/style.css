@@ -123,3 +123,21 @@ h2{
 #btn_div{
     width: 20%;
 }
+
+/* === STARS === */
+.stars li {
+    float:  left;
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
