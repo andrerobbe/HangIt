@@ -7,20 +7,34 @@
 </head>
 <body>
     <div class="content">
+       
+       <div class="modal" id="myModel">
+            <div class="model-content">
+                <div class="header_model">
+                    <span class="close">x</span>
+                    <h1>Je hebt gewonnen!</h1>              
+                </div>
+                <div class="content_model">
+                    <p>Proficiat je hebt 5 sterren bereikt en hebt nog tijd over!</p>
+                </div>
+                <button class="restartgame">Herstart</button>
+           </div>
+       </div>
+       
         <h1 id="main_title">HanGit!</h1>
         
         <div class="cfx">
             <div class="left_buttons">
-                <button>Next word</button>
-                <button>Credits</button>
-                <button>Nog een button</button>
-                <button>Restart Game</button>
+                <button id="nextword">Volgend Woord</button>
+                <button id="help">Help</button>
+                <button id="credits">Credits</button>
+                <button class="restartgame">Herstart</button>
                 <p id="timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>
             </div>
             <div class="hangmanIMG">
                 <img src="img/6.png" alt="Picture of the hangman">
             </div>
-            <div>
+             <div>
                 <ul class="stars cfx">
                     <li><img src="img/star_empty.png" alt="" class="star_image"></li>
                     <li><img src="img/star_empty.png" alt="" class="star_image"></li>
