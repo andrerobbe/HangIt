@@ -25,36 +25,59 @@
 body {
     font-family: 'KdGExpert';
 }
+button{
+    font-family: 'KdGExpert';
+}
 
 /* === CONTENT === */
 .content {
     width: 80%;
-    margin: 0 auto; 
-    padding-top: 2em;
+    margin: 0 auto;
 }
-.hangmanIMG {
+.middleWrapper {
     width: 40%;
     margin: 3em auto 4em auto;
 }
 
-.hangmanIMG img {
-    width: 60%;
-    margin: 0 auto;
-    display: block;
-}
-
-#main_title, #placeholder {
+#placeholder {
     text-align: center;
 }
 
-#main_title {
+.header img {
+    height: 150px;
+}
+.header{
     margin: 0;
-    font-size: 5em;
+    text-align: center;
+    display: block;
 }
 
 h2{
     text-align: center;
     font-size: 3em;
+    margin: 0.75em;
+}
+h3{
+    text-align: center;
+    font-size: 2em;
+}
+h4{
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+p{
+    font-size: 1.1em;
+}
+
+.middleWrapper img {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.middleWrapper p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #game_status {
@@ -68,7 +91,7 @@ h2{
     margin-bottom: 2em;
 }
 
-.buttons button, .modal .restartgame {
+.buttons button {
     width: 3em;
     height: 3em;
     margin-right: 1em;
@@ -79,22 +102,33 @@ h2{
     display: inline-block;
 }
 
-.buttons button:hover, .left_buttons button:hover,
-.modal .restartgame:hover {
+/* === BUTTONS STATUS === */
+.buttons button:hover,
+.left_buttons button:hover,
+.left_buttons a:hover,
+.modal .restartgame:hover,
+.modal a:hover,
+.middleWrapper a[class="start"]:hover {
     background-color: #000;
     color: #fff;
-    border: 2px solid #fff;
 }
 
-.buttons button:disabled, .left_buttons button:disabled {
+.buttons button:disabled,
+.left_buttons button:disabled,
+.left_buttons a:disabled {
     color: #bababa;
     background-color: #d8d8d8;
     border: 2px solid #d8d8d8;
 }
 
-/* === LEFT BUTTON === */
-.left_buttons button {
+/* === LEFT BUTTONS === */
+.left_buttons button,
+.left_buttons a,
+.middleWrapper a[class="start"],
+.modal .restartgame,
+.modal a {
     margin: 0.75em auto;
+    padding: 0;
     display: block;
     width: 10em;
     height: 3em;
@@ -106,6 +140,10 @@ h2{
     font-size: 1em;
     background-color: #fff;
 }
+.middleWrapper a[class="start"]{
+    margin-top: 2em;
+}
+
 .left_buttons{
     float: left;
     margin-left: 15%;
@@ -132,7 +170,7 @@ h2{
 /* === Modal === */
 /* Modal background */
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -159,6 +197,10 @@ h2{
     animation-duration: 1    s
 }
 
+.block{
+    display: block;
+}
+
 @-webkit-keyframes animatetop {
     from {top: -300px; opacity: 0} 
     to {top: 0; opacity: 1}
@@ -167,20 +209,6 @@ h2{
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
-}
-
-/* Close Btn */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 

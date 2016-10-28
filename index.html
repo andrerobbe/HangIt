@@ -3,35 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HanGit</title>
-	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/style.css">	
+	<link rel="icon" type="image/png" href="img/header-img.png">
+    <meta property="og:image" content="https://alessandroaussems.multimediatechnology.be/hangit/img/header-img.png"/>	
 </head>
 <body>
     <div class="content">
        
+
        <div class="modal" id="myModel">
             <div class="model-content">
                 <div class="header_model">
-                    <span class="close">x</span>
-                    <h1>Je hebt gewonnen!</h1>              
+                    <h1>Je hebt gewonnen!</h1>
                 </div>
                 <div class="content_model">
                     <p>Proficiat je hebt 5 sterren bereikt en hebt nog tijd over!</p>
                 </div>
                 <button class="restartgame">Herstart</button>
+                <a href="credits.html" id="credits">Credits</a>
            </div>
        </div>
        
-        <h1 id="main_title">HanGit!</h1>
+        <a class="header" href="index.html"><img src="img/header-img.png" alt="logo"></a>
         
         <div class="cfx">
             <div class="left_buttons">
                 <button id="nextword">Volgend Woord</button>
-                <button id="help">Help</button>
-                <button id="credits">Credits</button>
+                <a href="faq.html" id="help">Help</a>
+                <a href="credits.html" id="credits">Credits</a>
                 <button class="restartgame">Herstart</button>
                 <p id="timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>
             </div>
-            <div class="hangmanIMG">
+            <div class="middleWrapper">
                 <img src="img/6.png" alt="Picture of the hangman">
             </div>
              <div>
