@@ -25,42 +25,64 @@
 body {
     font-family: 'KdGExpert';
 }
+button{
+    font-family: 'KdGExpert';
+}
 
 /* === CONTENT === */
 .content {
     width: 80%;
-    margin: 0 auto; 
-    padding-top: 2em;
+    margin: 0 auto;
 }
-
-.hangmanIMG {
+.middleWrapper {
     width: 40%;
     margin: 3em auto 4em auto;
 }
 
-.hangmanIMG img {
+#placeholder {
+    text-align: center;
+}
+
+.header img {
+    height: 150px;
+}
+.header{
+    margin: 0;
+    text-align: center;
+    display: block;
+}
+
+h2{
+    text-align: center;
+    font-size: 3em;
+    margin: 0.75em;
+}
+h3{
+    text-align: center;
+    font-size: 2em;
+}
+h4{
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+p{
+    font-size: 1.1em;
+}
+
+.middleWrapper img {
     width: 60%;
     margin: 0 auto;
     display: block;
 }
 
-#main_title, #placeholder {
-    text-align: center;
+.middleWrapper p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-#main_title {
-    margin: 0;
-    font-size: 5em;
-}
-
-#placeholder {
-    text-align: center;
-    font-size: 3em;
-}
-
-/* === TIMER === */
-.hangmanIMG img, #timer {
-    float: left;
+#game_status {
+    height: 1em;
+    font-size: 2em;
 }
 
 /* === BUTTONS === */
@@ -69,7 +91,7 @@ body {
     margin-bottom: 2em;
 }
 
-button {
+.buttons button {
     width: 3em;
     height: 3em;
     margin-right: 1em;
@@ -80,21 +102,33 @@ button {
     display: inline-block;
 }
 
-button:hover {
+/* === BUTTONS STATUS === */
+.buttons button:hover,
+.left_buttons button:hover,
+.left_buttons a:hover,
+.modal .restartgame:hover,
+.modal a:hover,
+.middleWrapper a[class="start"]:hover {
     background-color: #000;
     color: #fff;
-    border: 2px solid #fff;
 }
 
-button:disabled {
+.buttons button:disabled,
+.left_buttons button:disabled,
+.left_buttons a:disabled {
     color: #bababa;
     background-color: #d8d8d8;
     border: 2px solid #d8d8d8;
 }
 
-/* === RESTART BUTTON === */
-a {
-    margin: 4em auto 5em auto;
+/* === LEFT BUTTONS === */
+.left_buttons button,
+.left_buttons a,
+.middleWrapper a[class="start"],
+.modal .restartgame,
+.modal a {
+    margin: 0.75em auto;
+    padding: 0;
     display: block;
     width: 10em;
     height: 3em;
@@ -104,12 +138,86 @@ a {
     text-decoration: none;
     color: #000;
     font-size: 1em;
+    background-color: #fff;
+}
+.middleWrapper a[class="start"]{
+    margin-top: 2em;
 }
 
-a:hover {
-    background-color: #000;
-    color: #fff;
+.left_buttons{
+    float: left;
+    margin-left: 15%;
 }
+#timer {
+    margin-left: 10%;
+    margin-bottom: 0;
+    font-size: 3em;
+}
+.left_buttons > button:first-child {
+    margin-top: 1em;
+}
+#btn_div{
+    width: 20%;
+}
+
+/* === STARS === */
+.stars li {
+    float:  left;
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+/* === Modal === */
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: yellow;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Box */
+.model-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 2em;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 1s;
+    animation-name: animatetop;
+    animation-duration: 1    s
+}
+
+.block{
+    display: block;
+}
+
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+
+
+
+
+
+
+
 
 
 
